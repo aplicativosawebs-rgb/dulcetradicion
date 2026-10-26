@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Tradición - Arroz de Leche</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Tema Claro */
+        :root {
+            --color-primary: #2d5016;
+            --color-secondary: #6b4423;
+            --color-accent: #d4a574;
+            --color-light: #faf8f5;
+            --color-white: #ffffff;
+            --color-text: #3d3d3d;
+            --color-border: #e8e4df;
+            --color-navbar-bg: #ffffff;
+            --color-section-bg: #ffffff;
+            --color-section-alt-bg: #faf8f5;
+            --color-card-bg: #ffffff;
+            --color-table-header: #2d5016;
+            --color-table-header-text: #ffffff;
+            --color-table-alt: #faf8f5;
+            --color-footer-bg: #2d5016;
+            --color-footer-text: #ffffff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        /* Tema Oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --color-primary: #a8d96c;
+                --color-secondary: #e8b89a;
+                --color-accent: #d4a574;
+                --color-light: #1a1a1a;
+                --color-white: #242424;
+                --color-text: #e0dedd;
+                --color-border: #3d3d3d;
+                --color-navbar-bg: #1f1f1f;
+                --color-section-bg: #242424;
+                --color-section-alt-bg: #1a1a1a;
+                --color-card-bg: #2d2d2d;
+                --color-table-header: #3d5f1f;
+                --color-table-header-text: #e0dedd;
+                --color-table-alt: #1a1a1a;
+                --color-footer-bg: #0d0d0d;
+                --color-footer-text: #e0dedd;
+                --shadow: 0 2px 8px rgba(0,0,0,0.3);
+            }
+        }
+
+        * {
+            font-family: 'Georgia', 'Garamond', serif;
+        }
+
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            background-color: var(--color-light);
+            color: var(--color-text);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--color-navbar-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1.2rem 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--color-primary) !important;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link {
+            color: var(--color-text) !important;
+            font-size: 0.95rem;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            color: var(--color-secondary) !important;
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            margin-left: 15px;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--color-section-bg);
+            padding: 100px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--color-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            transition: color 0.3s ease;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            font-style: italic;
+            transition: color 0.3s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 0.95rem;
+            color: var(--color-text);
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        /* General Sections */
+        section {
+            padding: 80px 20px;
+            background-color: var(--color-section-bg);
+            border-bottom: 1px solid var(--color-border);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        section:nth-child(odd) {
+            background-color: var(--color-section-alt-bg);
+        }
+
+        section h2 {
+            font-size: 2.2rem;
+            color: var(--color-secondary);
+            font-weight: 600;
+            margin-bottom: 50px;
+            text-align: center;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--color-accent);
+            transition: background 0.3s ease;
+        }
+
+        h3 {
+            color: var(--color-secondary);
+            font-weight: 600;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+        }
+
+        h4 {
+            color: var(--color-secondary);
+            font-weight: 600;
+            font-size: 1.15rem;
+            transition: color 0.3s ease;
+        }
+
+        p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            transition: color 0.3s ease;
+        }
+
+        /* Cards */
+        .card {
+            border: 1px solid var(--color-border);
+            box-shadow: none;
+            background: var(--color-card-bg);
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card:hover {
+            border-color: var(--color-accent);
+            box-shadow: var(--shadow);
+        }
+
+        /* Two Column Layout */
+        .two-col-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .col-content h3 {
+            margin-top: 0;
+        }
+
+        .col-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .col-content li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .col-content li:before {
+            content: '▪';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        /* Table */
+        .table-wrapper {
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border);
+            margin-top: 30px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .table {
+            margin: 0;
+            font-size: 0.92rem;
+        }
+
+        .table thead {
+            background-color: var(--color-table-header);
+            color: var(--color-table-header-text);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .table thead th {
+            border: none;
+            padding: 15px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .table tbody tr {
+            border-bottom: 1px solid var(--color-border);
+            transition: border-color 0.3s ease;
+        }
+
+        .table tbody tr:last-child {
+            background-color: var(--color-table-alt);
+            font-weight: 600;
+            border-top: 2px solid var(--color-accent);
+            transition: background-color 0.3s ease;
+        }
+
+        .table tbody td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+
+        .price {
+            color: var(--color-secondary);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        /* Highlight Box */
+        .highlight-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #2d5016 0%, #6b4423 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+            border-radius: 0;
+            transition: all 0.3s ease;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .highlight-box {
+                background: #2d2d2d;
+                color: #e0dedd;
+                border-left: 4px solid var(--color-accent);
+            }
+        }
+
+        .highlight-box h4 {
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .price-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-accent);
+            margin: 20px 0;
+            transition: color 0.3s ease;
+        }
+
+        .highlight-box p {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-footer-bg);
+            color: var(--color-footer-text);
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid var(--color-border);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        footer h5 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            margin: 8px 0;
+            opacity: 0.9;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            section h2 {
+                font-size: 1.6rem;
+            }
+
+            h3 {
+                font-size: 1.1rem;
+            }
+
+            .two-col-section,
+            .highlight-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .table {
+                font-size: 0.85rem;
+            }
+
+            .table thead th,
+            .table tbody td {
+                padding: 10px 8px;
+            }
+
+            .theme-toggle {
+                margin-left: 10px;
+            }
+        }
+
+        /* Separador minimalista */
+        .divider {
+            height: 1px;
+            background: var(--color-border);
+            margin: 40px 0;
+            transition: background 0.3s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-xl">
+            <a class="navbar-brand" href="#home">DULCE TRADICIÓN</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#quienes">Quiénes Somos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#producto">Producto</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#mision">Misión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#costos">Costos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container-xl">
+            <h1>Dulce Tradición</h1>
+            <div class="tagline">Un dulce sabor que se disfruta cucharada a cucharada</div>
+            <div class="subtitle">TRADICIÓN • SABOR • SOSTENIBILIDAD</div>
+        </div>
+    </section>
+
+    <!-- Quiénes Somos -->
+    <section id="quienes">
+        <div class="container-xl">
+            <h2>Quiénes Somos</h2>
+            <div class="two-col-section">
+                <div class="col-content">
+                    <h3>Nuestro Equipo</h3>
+                    <p>Somos un equipo de dos estudiantes dedicados a la preparación y venta de arroz con leche al estilo tradicional que queremos compartir con nuestra comunidad.</p>
+                    <p style="margin-top: 20px; font-weight: 600;">
+                        Gabriela Badillo Mendoza<br>
+                        Sarayth Tantiana García Muños
+                    </p>
+                </div>
+                <div class="col-content">
+                    <h3>Propósito</h3>
+                    <p>Nuestro objetivo es recuperar y preservar la tradición del arroz con leche, manteniendo la calidad, la presentación y el respeto por nuestro entorno. Queremos que cada vaso represente más que un postre: una experiencia y un compromiso.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Producto -->
+    <section id="producto">
+        <div class="container-xl">
+            <h2>Nuestro Producto</h2>
+            <div class="two-col-section">
+                <div class="col-content">
+                    <h3>Arroz con Leche Tradicional</h3>
+                    <p>Elaborado con ingredientes seleccionados, siguiendo la receta tradicional. Cada vaso contiene el sabor auténtico que hemos perfeccionado para ofrecerte la mejor calidad.</p>
+                    <div class="divider"></div>
+                    <h3>Ingredientes</h3>
+                    <ul>
+                        <li>Arroz seleccionado</li>
+                        <li>Leche fresca</li>
+                        <li>Azúcar</li>
+                        <li>Uvas pasas</li>
+                        <li>Pudín natural</li>
+                    </ul>
+                </div>
+                <div class="col-content">
+                    <h3>Presentación Responsable</h3>
+                    <p>Servido en vasos de papel compostables y cucharas de madera. Cada detalle está pensado para cuidar el planeta mientras disfrutas de nuestro producto.</p>
+                    <div class="divider"></div>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Preparado con atención al cliente, higiénica y cuidadosa. Cada vaso es un reflejo de nuestro compromiso con la tradición y la excelencia.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Misión y Visión -->
+    <section id="mision">
+        <div class="container-xl">
+            <h2>Misión & Visión</h2>
+            <div class="two-col-section">
+                <div class="col-content">
+                    <h3>Misión</h3>
+                    <p>Preparar y vender arroz con leche de buena calidad, con ingredientes seleccionados, una presentación agradable y una atención amable. Buscamos satisfacer a nuestros clientes y promover alternativas responsables al plástico desechable.</p>
+                </div>
+                <div class="col-content">
+                    <h3>Visión</h3>
+                    <p>Ser un emprendimiento reconocido en Aguachica por la calidad y presentación de nuestro arroz con leche. Deseamos que cada persona que pruebe nuestro producto valore la tradición y contribuya al cuidado del ambiente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objetivos -->
+    <section>
+        <div class="container-xl">
+            <h2>Objetivos</h2>
+            <div class="two-col-section">
+                <div class="col-content">
+                    <h3>Objetivo General</h3>
+                    <p>Elaborar y comercializar arroz con leche con buena presentación, calidad y atención al cliente, fortaleciendo nuestro emprendimiento y promoviendo prácticas responsables en el uso de materiales.</p>
+                </div>
+                <div class="col-content">
+                    <h3>Objetivos Específicos</h3>
+                    <ul>
+                        <li>Preparar arroz con leche con ingredientes de calidad</li>
+                        <li>Ofrecer presentación limpia y práctica</li>
+                        <li>Dar a conocer el producto a nuevos clientes</li>
+                        <li>Organizar costos y ganancias de forma clara</li>
+                        <li>Mantener uso de vasos de papel y cucharas de madera</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sostenibilidad -->
+    <section>
+        <div class="container-xl">
+            <h2>Compromiso con la Naturaleza</h2>
+            <div class="two-col-section">
+                <div class="col-content">
+                    <h3>Sostenibilidad</h3>
+                    <p>Utilizamos vasos de papel compostables y cucharas de madera, reducimos al máximo los desperdicios de ingredientes. Nuestro emprendimiento se alinea con el Objetivo de Desarrollo Sostenible 12: Producción y Consumo Responsables.</p>
+                </div>
+                <div class="col-content">
+                    <h3>Impacto Positivo</h3>
+                    <p>Aprovechamos residuos orgánicos para producir abono natural que devolvemos al entorno. De esta manera, cerramos el ciclo de los residuos y contribuimos activamente al cuidado del planeta que compartimos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mercado y Estrategia -->
+    <section>
+        <div class="container-xl">
+            <h2>Mercado Objetivo</h2>
+            <div class="col-content" style="max-width: 700px; margin: 0 auto;">
+                <p style="text-align: center; font-size: 1rem;">Estudiantes, docentes, familias, trabajadores y todas las personas que disfrutan de los postres tradicionales. Aquellos que valoran la calidad, la presentación y el compromiso con la sostenibilidad.</p>
+            </div>
+
+            <div style="margin-top: 60px;">
+                <h3 style="text-align: center; margin-bottom: 30px;">Estrategia de Venta</h3>
+                <div class="two-col-section">
+                    <div class="col-content">
+                        <h4>Canales de Distribución</h4>
+                        <ul>
+                            <li>Vasos de diferentes tamaños</li>
+                            <li>Promoción por WhatsApp y redes sociales</li>
+                            <li>Presentación visual de calidad</li>
+                            <li>Atención amable y personalizada</li>
+                        </ul>
+                    </div>
+                    <div class="col-content">
+                        <h4>Mejora Continua</h4>
+                        <ul>
+                            <li>Recopilación constante de feedback</li>
+                            <li>Adaptación según preferencias</li>
+                            <li>Innovación en presentación</li>
+                            <li>Compromiso con la calidad</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Costos -->
+    <section id="costos">
+        <div class="container-xl">
+            <h2>Análisis Financiero</h2>
+            
+            <div class="table-wrapper">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th class="text-end">Costo aprox. (COP)</th>
+                            <th>Rendimiento</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Arroz (1 kg)</td>
+                            <td class="text-end price">$ 3.000</td>
+                            <td>Aprox. 20 vasos</td>
+                        </tr>
+                        <tr>
+                            <td>Leche (1 L)</td>
+                            <td class="text-end price">$ 3.500</td>
+                            <td>Aprox. 10-12 vasos</td>
+                        </tr>
+                        <tr>
+                            <td>Azúcar (1 kg)</td>
+                            <td class="text-end price">$ 1.500</td>
+                            <td>Aprox. 20 vasos</td>
+                        </tr>
+                        <tr>
+                            <td>Uvas pasas (250 g)</td>
+                            <td class="text-end price">$ 2.000</td>
+                            <td>Aprox. 15-20 vasos</td>
+                        </tr>
+                        <tr>
+                            <td>Pudín (1 paquete)</td>
+                            <td class="text-end price">$ 2.500</td>
+                            <td>Aprox. 15-20 vasos</td>
+                        </tr>
+                        <tr>
+                            <td>Vasos de papel</td>
+                            <td class="text-end price">$ 1.500</td>
+                            <td>20 unidades</td>
+                        </tr>
+                        <tr>
+                            <td>Cucharas de madera</td>
+                            <td class="text-end price">$ 1.600</td>
+                            <td>Por preparación</td>
+                        </tr>
+                        <tr>
+                            <td>Otros gastos</td>
+                            <td class="text-end price">$ 1.000</td>
+                            <td>Estimado</td>
+                        </tr>
+                        <tr>
+                            <td>Costo Total (aprox.)</td>
+                            <td class="text-end price">$ 16.800</td>
+                            <td>Por lote de 20 vasos</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="highlight-section">
+                <div class="highlight-box">
+                    <h4>Costo por Vaso</h4>
+                    <div class="price-large">$ 840</div>
+                    <p>(Si se producen 20 vasos)</p>
+                </div>
+                <div class="highlight-box">
+                    <h4>Precio de Venta</h4>
+                    <div class="price-large">$ 5.000</div>
+                    <p>Por vaso</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Ganancia Aproximada</h3>
+                <p style="font-size: 1.1rem; color: var(--color-secondary); font-weight: 600;">
+                    $ 5.000 − $ 840 = <span style="color: var(--color-primary);">$ 4.160 por vaso</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-xl">
+            <h5>¡Apoya lo local, elige lo natural!</h5>
+            <p>Dulce Tradición | Arroz con Leche Tradicional</p>
+            <p style="margin-top: 20px; font-size: 0.85rem;">
+                XV Feria de Emprendimiento 2026<br>
+                Universidad Popular del Cesar • Seccional Aguachica<br>
+                Innovación, Tecnología y Soluciones Basadas en la Naturaleza
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // El tema se detecta automáticamente según las preferencias del sistema
+        // No necesita JavaScript, pero aquí va para referencia
+        
+        // Verificar preferencia de tema del sistema
+        const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        
+        // Escuchar cambios en las preferencias del sistema
+        darkModeQuery.addEventListener('change', (e) => {
+            // La página se refresca automáticamente con la nueva preferencia
+            // Los estilos CSS se aplican automáticamente
+            console.log('Tema cambiado a:', e.matches ? 'oscuro' : 'claro');
+        });
+    </script>
+</body>
+</html>
