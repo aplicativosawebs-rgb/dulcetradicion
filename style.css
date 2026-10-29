@@ -384,7 +384,7 @@ p {
 }
 
 .highlight-box {
-    background: linear-gradient(135deg, #2d5016 0%, #6b4423 100%);
+    background: #444444;
     color: #ffffff;
     padding: 40px 30px;
     text-align: center;
